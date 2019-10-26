@@ -20,8 +20,10 @@ public class SumTwoNumbers {
         int target = 9;
         //int[] result = getTwoNumber(nums, target);
         //System.out.println(Arrays.toString(result));
-        int[] numbers = towNumber(nums, target);
-        System.out.println(Arrays.toString(numbers));
+        /*int[] numbers = towNumber(nums, target);
+        System.out.println(Arrays.toString(numbers));*/
+        int[] number = number(nums, target);
+        System.out.println(Arrays.toString(number));
     }
 
     /**
@@ -72,6 +74,22 @@ public class SumTwoNumbers {
             if (map.containsKey(objective) && map.get(objective)!=i){
                 return new int[]{i,map.get(objective)};
             }
+        }
+        throw new RuntimeException("查询不到数据");
+    }
+
+    /**
+     * 方法三
+     * @return
+     */
+    private static int[] number(int[] nums,int targer){
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i= 0;i<nums.length;i++){
+            int objectTive = targer - nums[i];
+            if (map.containsKey(objectTive)){
+                return new int[]{map.get(objectTive),i};
+            }
+            map.put(nums[i],i);
         }
         throw new RuntimeException("查询不到数据");
     }
